@@ -83,15 +83,18 @@ brew install git-lfs
 brew install imagemagick --with-webp
 brew install lua
 brew install lynx
+brew install node # This installs `npm` too using the recommended installation method
 brew install p7zip
 brew install pigz
 brew install pv
 brew install rename
 brew install rlwrap
 brew install ssh-copy-id
+brew install terminal-notifier
 brew install tree
 brew install vbindiff
 brew install zopfli
+brew install zsh
 
 # Remove outdated versions from the cellar.
 brew cleanup

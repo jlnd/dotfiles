@@ -106,7 +106,7 @@ sudo systemsetup -setrestartfreeze on
 sudo systemsetup -setcomputersleep 20
 
 # Disable Notification Center and remove the menu bar icon
-#launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
+launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
 
 # Disable automatic capitalization as it’s annoying when typing code
 #defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
@@ -141,7 +141,7 @@ defaults write com.apple.touchbar.agent PresentationModeGlobal fullControlStrip
 ###############################################################################
 
 # Disable hibernation (speeds up entering sleep mode)
-#sudo pmset -a hibernatemode 0
+sudo pmset -a hibernatemode 0
 
 # Remove the sleep image file to save disk space
 #sudo rm /private/var/vm/sleepimage

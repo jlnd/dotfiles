@@ -1,0 +1,52 @@
+# ~/.gitconfig — managed by ~/.dotfiles
+# Per-machine identity goes in ~/.gitconfig.local (gitignored, see [include] below).
+
+[user]
+	# Set name + email in ~/.gitconfig.local so they can differ between
+	# personal and work machines.
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = code --wait
+	excludesfile = ~/.gitignore_global
+	autocrlf = input
+	pager = less -FRX
+
+[color]
+	ui = auto
+
+[pull]
+	rebase = false
+
+[push]
+	default = simple
+	autoSetupRemote = true
+
+[rebase]
+	autoStash = true
+
+[diff]
+	colorMoved = default
+
+[merge]
+	conflictstyle = zdiff3
+
+[help]
+	autocorrect = prompt
+
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	cm = commit -m
+	ca = commit --amend
+	last = log -1 HEAD
+	lg = log --oneline --graph --decorate --all
+	unstage = reset HEAD --
+	undo = reset --soft HEAD~1
+
+# Per-machine overrides (NOT in git): name/email, signing keys, work paths
+[include]
+	path = ~/.gitconfig.local

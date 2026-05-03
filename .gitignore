@@ -1,0 +1,31 @@
+# --- Machine-local overrides (sourced by .zshrc / .gitconfig if present) ---
+.zshrc.local
+.gitconfig.local
+shell/.zshrc.local
+git/.gitconfig.local
+
+# --- Secrets ---
+.env
+.env.*
+*.pem
+*.key
+*_token
+*_secret
+*.secret
+secrets/
+.ssh/
+.gnupg/
+
+# --- macOS / editor cruft ---
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+*.swp
+*.swo
+*~
+
+# --- Local backup folders bootstrap.sh creates ---
+.dotfiles-backup-*/

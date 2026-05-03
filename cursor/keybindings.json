@@ -1,0 +1,4 @@
+// Custom Cursor keybindings (uses VS Code's keybinding format).
+// Dump current keybindings with:
+//   cmd+shift+p → "Preferences: Open Keyboard Shortcuts (JSON)" → copy here.
+[]

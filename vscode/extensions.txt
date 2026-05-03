@@ -1,0 +1,12 @@
+# VS Code extensions to install on a fresh machine.
+# One extension per line, in publisher.name format.
+# Regenerate this list anytime with:
+#   code --list-extensions > vscode/extensions.txt
+#
+# Install all of them with:
+#   xargs -L1 code --install-extension < vscode/extensions.txt
+
+editorconfig.editorconfig
+esbenp.prettier-vscode
+streetsidesoftware.code-spell-checker
+yzhang.markdown-all-in-one

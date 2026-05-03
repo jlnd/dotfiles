@@ -1,0 +1,28 @@
+{
+  "//": "Starter Cursor settings — Cursor reads the same schema as VS Code.",
+
+  "editor.fontFamily": "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 13,
+  "editor.lineHeight": 1.5,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.minimap.enabled": false,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.formatOnSave": true,
+
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+
+  "workbench.editor.enablePreview": false,
+  "workbench.startupEditor": "none",
+
+  "terminal.integrated.fontFamily": "'MesloLGS Nerd Font', 'Fira Code', Menlo",
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.defaultProfile.osx": "zsh",
+
+  "telemetry.telemetryLevel": "off"
+}

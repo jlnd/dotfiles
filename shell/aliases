@@ -1,0 +1,67 @@
+# ~/.aliases — shell aliases
+# Sourced from ~/.zshrc
+
+# ---------- Navigation -------------------------------------------------------
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias ~="cd ~"
+alias -- -="cd -"
+
+# ---------- Listing (uses eza if installed, else falls back to ls) ----------
+if command -v eza >/dev/null 2>&1; then
+  alias ls="eza --group-directories-first"
+  alias ll="eza -lh --group-directories-first --git"
+  alias la="eza -lah --group-directories-first --git"
+  alias lt="eza --tree --level=2"
+else
+  alias ls="ls -G"
+  alias ll="ls -lh"
+  alias la="ls -lAh"
+fi
+
+# ---------- File ops ---------------------------------------------------------
+alias mv="mv -i"
+alias cp="cp -i"
+alias rm="rm -i"
+alias mkdir="mkdir -pv"
+
+# ---------- Git --------------------------------------------------------------
+alias g="git"
+alias gs="git status"
+alias gd="git diff"
+alias gdc="git diff --cached"
+alias gco="git checkout"
+alias gcb="git checkout -b"
+alias gp="git push"
+alias gl="git pull"
+alias glog="git log --oneline --graph --decorate --all"
+
+# ---------- Editors ----------------------------------------------------------
+alias c="code ."
+alias cu="cursor ."
+
+# ---------- Dotfiles shortcut ------------------------------------------------
+alias dot="cd ~/.dotfiles"
+alias zshconfig="$EDITOR ~/.dotfiles/shell/zshrc"
+alias reload="source ~/.zshrc"
+
+# ---------- macOS ------------------------------------------------------------
+# Show / hide hidden files in Finder
+alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# Empty Trash and clear DS_Store / log files
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
+
+# Lock the screen (handy keybind)
+alias afk="pmset displaysleepnow"
+
+# IP addresses
+alias ip="curl -s https://api.ipify.org && echo"
+alias localip="ipconfig getifaddr en0"
+
+# ---------- Misc -------------------------------------------------------------
+alias h="history"
+alias path='echo -e ${PATH//:/\\n}'
+alias serve="python3 -m http.server"  # quick local file server in cwd

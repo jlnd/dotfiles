@@ -26,6 +26,7 @@ PAIRS=(
   "home/inputrc"           ".inputrc"
   "home/curlrc"            ".curlrc"
   "home/wgetrc"            ".wgetrc"
+  "home/p10k.zsh"          ".p10k.zsh"
   "vscode/settings.json"    "Library/Application Support/Code/User/settings.json"
   "vscode/keybindings.json" "Library/Application Support/Code/User/keybindings.json"
   "cursor/settings.json"    "Library/Application Support/Cursor/User/settings.json"

@@ -32,9 +32,12 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 # Disable the "Are you sure you want to open this application?" dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
-# Disable smart quotes / dashes (annoying when writing code)
+# Disable smart quotes / dashes / auto-capitalization / period-on-double-space
+# (all annoying when writing code or technical prose)
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
 ###############################################################################
 # Trackpad, mouse, keyboard                                                   #
@@ -55,6 +58,10 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 ###############################################################################
 # Screen / screenshots                                                        #
 ###############################################################################
+
+# Require password immediately when sleep or screen saver begins
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Save screenshots to ~/Screenshots (auto-created)
 mkdir -p "${HOME}/Screenshots"
@@ -99,6 +106,9 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # Use list view in all Finder windows by default
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
+# Disable the warning before emptying the Trash
+defaults write com.apple.finder WarnOnEmptyTrash -bool false
+
 ###############################################################################
 # Dock                                                                        #
 ###############################################################################
@@ -114,6 +124,9 @@ defaults write com.apple.dock show-process-indicators -bool true
 
 # Don't automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
+
+# Don't show recent applications in the Dock
+defaults write com.apple.dock show-recents -bool false
 
 # Auto-hide the Dock with no delay
 defaults write com.apple.dock autohide -bool true

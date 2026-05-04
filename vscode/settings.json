@@ -30,6 +30,31 @@
   "terminal.integrated.fontSize": 13,
   "terminal.integrated.defaultProfile.osx": "zsh",
 
+  "//flat-colors": "Integrated terminal palette — mirrors iterm2/flat-colors.itermcolors so the iTerm2 and editor terminals look the same.",
+  "workbench.colorCustomizations": {
+    "terminal.background":           "#191a1a",
+    "terminal.foreground":           "#eceff1",
+    "terminal.ansiBlack":            "#000000",
+    "terminal.ansiRed":              "#ee2c68",
+    "terminal.ansiGreen":            "#3dd178",
+    "terminal.ansiYellow":           "#ffc900",
+    "terminal.ansiBlue":             "#00b0ff",
+    "terminal.ansiMagenta":          "#ff4081",
+    "terminal.ansiCyan":             "#64fcda",
+    "terminal.ansiWhite":            "#ffffff",
+    "terminal.ansiBrightBlack":      "#b0bec5",
+    "terminal.ansiBrightRed":        "#ee3c75",
+    "terminal.ansiBrightGreen":      "#83f5a3",
+    "terminal.ansiBrightYellow":     "#ffe47e",
+    "terminal.ansiBrightBlue":       "#80d8ff",
+    "terminal.ansiBrightMagenta":    "#ff80ab",
+    "terminal.ansiBrightCyan":       "#a7fdeb",
+    "terminal.ansiBrightWhite":      "#ffffff",
+    "terminal.selectionBackground":  "#25b2f6",
+    "terminalCursor.foreground":     "#ee2c69",
+    "terminalCursor.background":     "#000000"
+  },
+
   "explorer.confirmDelete": true,
   "explorer.confirmDragAndDrop": false,
 

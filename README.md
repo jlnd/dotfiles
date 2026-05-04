@@ -116,6 +116,19 @@ The `settings.json` and `keybindings.json` files are symlinked into
 `~/Library/Application Support/Code/User/` and
 `~/Library/Application Support/Cursor/User/` by `bootstrap.sh`.
 
+### Integrated terminal colors
+
+The integrated terminals in VS Code and Cursor are themed to match the
+iTerm2 "Flat" preset (see `iterm2/flat-colors.itermcolors`). The palette
+lives inline as hex values under `workbench.colorCustomizations` in each
+editor's `settings.json`, so it's applied automatically the first time
+`bootstrap.sh` symlinks those files in — no extra install step.
+
+If you ever change the iTerm2 colors, run
+`scripts/sync-terminal-colors.py` to regenerate the editor palettes from
+the updated `.itermcolors` file. See `iterm2/README.md` for the full
+re-export workflow.
+
 ## Git hooks (pre-push secret scan)
 
 `git/gitconfig` sets `core.hooksPath = ~/.dotfiles/git/hooks`, which makes git

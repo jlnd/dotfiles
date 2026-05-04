@@ -33,6 +33,10 @@
   "explorer.confirmDelete": true,
   "explorer.confirmDragAndDrop": false,
 
+  "workbench.editorAssociations": {
+    "*.plist": "default"
+  },
+
   "telemetry.telemetryLevel": "off",
   "update.mode": "start"
 }

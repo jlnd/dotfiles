@@ -29,3 +29,6 @@ secrets/
 
 # --- Local backup folders bootstrap.sh creates ---
 .dotfiles-backup-*/
+
+# --- Output of compare.sh (may contain $HOME contents) ---
+compare-report.txt

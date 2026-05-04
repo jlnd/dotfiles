@@ -37,6 +37,7 @@ brew "gitleaks"
 # ============================================================
 # Zsh enhancements
 # ============================================================
+brew "pure"               # minimalist zsh prompt (loaded in shell/zshrc)
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 

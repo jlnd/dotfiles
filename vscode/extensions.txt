@@ -10,3 +10,4 @@ editorconfig.editorconfig
 esbenp.prettier-vscode
 streetsidesoftware.code-spell-checker
 yzhang.markdown-all-in-one
+github.copilot-chat

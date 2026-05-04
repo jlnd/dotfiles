@@ -13,9 +13,8 @@ fi
 # ---------- Oh My Zsh --------------------------------------------------------
 export ZSH="$HOME/.oh-my-zsh"
 
-# Theme. `robbyrussell` is the default and needs no special font.
-# Try `agnoster` if you've installed a Powerline/Nerd Font (see Brewfile).
-ZSH_THEME="robbyrussell"
+# Prompt is handled by Pure (set up below) — leave the OMZ theme empty.
+ZSH_THEME=""
 
 # Plugins. `git` ships with Oh My Zsh; the others come from Homebrew or
 # git-cloned in install.sh.
@@ -37,6 +36,14 @@ setopt HIST_REDUCE_BLANKS
 setopt SHARE_HISTORY
 
 source "$ZSH/oh-my-zsh.sh"
+
+# ---------- Pure prompt ------------------------------------------------------
+# Installed via `brew install pure` (see Brewfile).
+if command -v brew >/dev/null 2>&1; then
+  fpath+=("$(brew --prefix)/share/zsh/site-functions")
+fi
+autoload -U promptinit && promptinit
+prompt pure 2>/dev/null  # silently no-op if pure isn't installed yet
 
 # ---------- Source split-out files (kept in this repo) -----------------------
 for file in "$HOME/.exports" "$HOME/.aliases" "$HOME/.functions"; do

@@ -13,6 +13,10 @@
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
 	pager = less -FRX
+	# Shared git hooks live in this repo (currently: pre-push gitleaks scan).
+	# Per-repo `.husky/`, `.git/hooks/`, or pre-commit-framework setups can
+	# override this by setting `core.hooksPath` locally in that repo.
+	hooksPath = ~/.dotfiles/git/hooks
 
 [color]
 	ui = auto

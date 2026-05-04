@@ -92,6 +92,25 @@ The `settings.json` and `keybindings.json` files are symlinked into
 `~/Library/Application Support/Code/User/` and
 `~/Library/Application Support/Cursor/User/` by `bootstrap.sh`.
 
+## Git hooks (pre-push secret scan)
+
+`git/gitconfig` sets `core.hooksPath = ~/.dotfiles/git/hooks`, which makes git
+look for hooks in this repo for **every** local repository on the machine.
+Currently there's one hook:
+
+- **`git/hooks/pre-push`** — runs [gitleaks](https://github.com/gitleaks/gitleaks)
+  on the outgoing commit range before each `git push`. Aborts the push if it
+  finds anything that looks like a secret (API key, private key, token, etc.).
+
+If gitleaks isn't installed yet on a machine, the hook prints a notice and
+exits cleanly so it doesn't block the push.
+
+To bypass for one push: `git push --no-verify`
+To disable globally:    `git config --global --unset core.hooksPath`
+
+A repo can override the global hooks path locally (e.g. Husky-managed Node
+projects do this automatically), in which case its own hooks run instead.
+
 ## Uninstall / rollback
 
 `bootstrap.sh` saves anything it overwrites to `~/.dotfiles-backup-<timestamp>/`.

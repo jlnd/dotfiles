@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+# pre-push — scan outgoing commits for secrets with gitleaks.
+#
+# Triggered by every `git push`. Receives one line per ref being pushed on
+# stdin: <local_ref> <local_sha> <remote_ref> <remote_sha>
+#
+# To bypass (rare cases): `git push --no-verify`
+# To disable globally:    `git config --global --unset core.hooksPath`
+
+set -uo pipefail
+
+# Don't fail the push if gitleaks isn't installed yet (e.g. fresh machine
+# before `brew bundle` has run). Just warn and exit clean.
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "pre-push: gitleaks not installed — skipping secret scan."
+  echo "          run \`brew install gitleaks\` to enable."
+  exit 0
+fi
+
+zero="0000000000000000000000000000000000000000"
+fail=0
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  # Branch deletion — nothing to scan
+  [[ "$local_sha" == "$zero" ]] && continue
+
+  # Pick the commit range to scan
+  if [[ "$remote_sha" == "$zero" ]]; then
+    # New branch — scan commits reachable from local_sha but not from any
+    # other remote ref (i.e. just the new ones)
+    range="$local_sha --not --remotes"
+    label="$local_ref (new branch)"
+  else
+    range="$remote_sha..$local_sha"
+    label="$remote_sha..$local_sha on $remote_ref"
+  fi
+
+  printf "pre-push: scanning %s ... " "$label"
+  if gitleaks detect --no-banner --redact --log-opts="$range" >/tmp/gitleaks-prepush.log 2>&1; then
+    echo "clean"
+  else
+    echo "FOUND POSSIBLE SECRETS"
+    cat /tmp/gitleaks-prepush.log
+    fail=1
+  fi
+done
+
+rm -f /tmp/gitleaks-prepush.log
+
+if [[ "$fail" -ne 0 ]]; then
+  cat <<'EOF'
+
+pre-push: gitleaks flagged potential secrets in the outgoing commits.
+  - Review the output above.
+  - If a finding is a true positive, rewrite the offending commit before pushing.
+  - If it's a known false positive, allow-list it in a `.gitleaksignore` file
+    (see https://github.com/gitleaks/gitleaks#gitleaksignore).
+  - To bypass this hook for one push: `git push --no-verify`
+EOF
+  exit 1
+fi
+
+exit 0

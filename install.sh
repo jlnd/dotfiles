@@ -92,8 +92,8 @@ cat <<'EOF'
 All done. Next steps:
 
   1. Quit and reopen iTerm2 (and your terminal in VS Code / Cursor).
-  2. Point iTerm2 at the prefs folder: Preferences → General → Preferences →
-     "Load preferences from a custom folder or URL" → choose ~/.dotfiles/iterm2
+  2. Point iTerm2 at the prefs folder: Settings → General → Settings →
+     "Load settings from a custom folder or URL" → choose ~/.dotfiles/iterm2
   3. Install your editor extensions:
        xargs -L1 code   --install-extension < ~/.dotfiles/vscode/extensions.txt
        xargs -L1 cursor --install-extension < ~/.dotfiles/cursor/extensions.txt

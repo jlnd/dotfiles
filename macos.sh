@@ -158,6 +158,19 @@ defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
 defaults write com.apple.ActivityMonitor ShowCategory -int 0
 
 ###############################################################################
+# iTerm2
+###############################################################################
+
+# Don’t display the annoying prompt when quitting iTerm
+defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+
+# Boost paste performance immediately
+# Higher byte values (e.g., 4096) handle larger chunks at once,
+# while low delays speed up delivery
+defaults write com.googlecode.iterm2 QuickPasteBytesPerCall -int 4096
+defaults write com.googlecode.iterm2 QuickPasteDelayBetweenCalls -float 0.01
+
+###############################################################################
 # Restart affected apps                                                       #
 ###############################################################################
 

@@ -1,0 +1,43 @@
+# ~/.inputrc — GNU readline configuration.
+#
+# Readline is the line-editor used by `bash`, `python`, `node`, `psql`,
+# `redis-cli`, `mysql`, `irb`, `lua`, and many other REPLs. Zsh has its
+# own completion system and ignores this file.
+
+# Case-insensitive tab completion
+set completion-ignore-case on
+
+# List all matches if multiple completions are possible
+set show-all-if-ambiguous on
+
+# Add a trailing slash when autocompleting a symlink to a directory
+set mark-symlinked-directories on
+
+# Up/Down: history search using the text already typed as a prefix.
+# (e.g. type `git ` then Up to scroll through past `git` commands.)
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# Don't autocomplete hidden files unless the pattern explicitly starts with `.`
+set match-hidden-files off
+
+# Show all completions at once instead of paging
+set page-completions off
+
+# Ask before showing completions if there are more than 200
+set completion-query-items 200
+
+# Show file-type indicators (`/` for dirs, `*` for executables, etc.)
+set visible-stats on
+
+# When completing in the middle of a word, don't duplicate the trailing text
+# (cd ~/src/mozil[cursor]la → Tab gives `cd ~/src/mozilla`, not `mozillala`)
+set skip-completed-text on
+
+# UTF-8 input/output
+set input-meta on
+set output-meta on
+set convert-meta off
+
+# Alt/Meta + Delete: delete the preceding word
+"\e[3;3~": kill-word

@@ -22,6 +22,10 @@ LINKS=(
   "shell/functions       .functions"
   "git/gitconfig         .gitconfig"
   "git/gitignore_global  .gitignore_global"
+  "home/hushlogin        .hushlogin"
+  "home/inputrc          .inputrc"
+  "home/curlrc           .curlrc"
+  "home/wgetrc           .wgetrc"
 )
 
 # VS Code / Cursor live in Library/Application Support, handled separately below.

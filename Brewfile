@@ -4,8 +4,9 @@
 # ============================================================
 # Taps
 # ============================================================
-tap "homebrew/bundle"
-tap "homebrew/services"
+# Note: homebrew/bundle and homebrew/services were deprecated in 2025.
+# Both `brew bundle` and `brew services` are now built into Homebrew core,
+# so no taps are needed here. Add any third-party taps below as needed.
 
 # ============================================================
 # CLI essentials

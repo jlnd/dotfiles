@@ -32,3 +32,6 @@ secrets/
 
 # --- Output of compare.sh (may contain $HOME contents) ---
 compare-report.txt
+
+# --- Gitleaks configuration file (would be self-defeating to leak what you don't want to leak) ---
+.gitleaks.toml

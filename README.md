@@ -17,6 +17,7 @@ dotfiles/
 ├── Brewfile             # Formulae, casks, and Mac App Store apps (brew bundle)
 ├── .macos               # macOS system defaults (Finder, Dock, trackpad, etc.)
 ├── shell/               # .zshrc, .zprofile, .aliases, .functions, .exports
+├── home/                # misc home-dir dotfiles (.p10k.zsh, .inputrc, etc.)
 ├── git/                 # .gitconfig, .gitignore_global
 ├── iterm2/              # iTerm2 exported preferences (com.googlecode.iterm2.plist)
 ├── vscode/              # settings.json, keybindings.json, extensions.txt
@@ -41,9 +42,11 @@ cd ~/.dotfiles
 
 1. Install Homebrew (correct prefix for Intel vs Apple Silicon, auto-detected).
 2. Run `brew bundle` against the `Brewfile`.
-3. Install Oh My Zsh and the two plugins it expects (`zsh-autosuggestions`,
-   `zsh-syntax-highlighting`).
-4. Run `./bootstrap.sh` to symlink configs into `~`.
+3. Install Oh My Zsh, the two plugins it expects (`zsh-autosuggestions`,
+   `zsh-syntax-highlighting`), and the **Powerlevel10k** theme.
+4. Run `./bootstrap.sh` to symlink configs into `~` (including
+   `~/.p10k.zsh`, so the prompt is preconfigured — no `p10k configure`
+   wizard on first launch).
 5. Optionally apply `./.macos` system defaults (you'll be asked).
 6. Print next-steps for iTerm2 and VS Code / Cursor.
 
@@ -77,6 +80,27 @@ Open iTerm2 → **Preferences → General → Preferences** and check
 "Load preferences from a custom folder or URL", then point it at
 `~/.dotfiles/iterm2`. iTerm2 will read `com.googlecode.iterm2.plist`
 from there and keep it in sync across machines.
+
+### Powerlevel10k font
+
+The prompt uses Powerlevel10k, which renders its icons with a Nerd
+Font. The Brewfile already installs **Meslo LG Nerd Font** (cask
+`font-meslo-lg-nerd-font`), so on a fresh install you just need to
+*select* it in iTerm2:
+
+**Settings → Profiles → Text → Font → "MesloLGS NF"**
+
+If the prompt shows boxes (`▯`) instead of arrows, branch icons, etc.,
+the font isn't being picked up — re-check that the cask installed and
+that the right font is selected. The same applies to the integrated
+terminals in VS Code and Cursor; set
+`"terminal.integrated.fontFamily": "MesloLGS NF"` in their
+`settings.json` if needed.
+
+The wizard-generated config lives at `home/p10k.zsh` in this repo and
+is symlinked to `~/.p10k.zsh` by `bootstrap.sh`. To regenerate it on a
+machine, run `p10k configure`, then commit the updated file back to the
+repo.
 
 ## VS Code / Cursor
 

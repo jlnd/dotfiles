@@ -26,6 +26,7 @@ LINKS=(
   "home/inputrc          .inputrc"
   "home/curlrc           .curlrc"
   "home/wgetrc           .wgetrc"
+  "home/p10k.zsh         .p10k.zsh"
 )
 
 # VS Code / Cursor live in Library/Application Support, handled separately below.

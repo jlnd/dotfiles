@@ -5,6 +5,7 @@
 #   1. Install Homebrew (correct prefix for Intel vs Apple Silicon)
 #   2. brew bundle (Brewfile)
 #   3. Install Oh My Zsh + zsh-autosuggestions + zsh-syntax-highlighting
+#      + Powerlevel10k theme
 #   4. Run bootstrap.sh to symlink configs into ~
 #   5. Optionally apply ./macos.sh
 
@@ -66,6 +67,20 @@ clone_omz_plugin() {
 clone_omz_plugin zsh-autosuggestions     https://github.com/zsh-users/zsh-autosuggestions
 clone_omz_plugin zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting
 
+# Powerlevel10k theme — referenced as ZSH_THEME in shell/zshrc.
+# Cloned into Oh My Zsh's custom themes dir; ~/.p10k.zsh (symlinked by
+# bootstrap.sh from home/p10k.zsh) holds the wizard-generated config so
+# the prompt is preconfigured on first launch — no `p10k configure` run
+# required. The Meslo Nerd Font that p10k expects is already installed by
+# the Brewfile (cask "font-meslo-lg-nerd-font"); just point iTerm2 at it
+# (Settings → Profiles → Text → Font: "MesloLGS NF").
+if [[ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]]; then
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
+    "$ZSH_CUSTOM/themes/powerlevel10k"
+else
+  echo "Theme powerlevel10k already present."
+fi
+
 # ---------- 4. Symlink dotfiles ---------------------------------------------
 bold "Linking dotfiles into your home directory"
 "$DOTFILES_DIR/bootstrap.sh"
@@ -94,9 +109,14 @@ All done. Next steps:
   1. Quit and reopen iTerm2 (and your terminal in VS Code / Cursor).
   2. Point iTerm2 at the prefs folder: Settings → General → Settings →
      "Load settings from a custom folder or URL" → choose ~/.dotfiles/iterm2
-  3. Install your editor extensions:
+  3. Set the iTerm2 font for the Powerlevel10k prompt icons:
+     Settings → Profiles → Text → Font → "MesloLGS NF"
+     (installed via the Brewfile — cask "font-meslo-lg-nerd-font").
+     Do the same in VS Code / Cursor: set "terminal.integrated.fontFamily"
+     to "MesloLGS NF" if the prompt glyphs render as boxes.
+  4. Install your editor extensions:
        xargs -L1 code   --install-extension < ~/.dotfiles/vscode/extensions.txt
        xargs -L1 cursor --install-extension < ~/.dotfiles/cursor/extensions.txt
-  4. Edit ~/.gitconfig.local to set your name and email if needed.
+  5. Edit ~/.gitconfig.local to set your name and email if needed.
 
 EOF

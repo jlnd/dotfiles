@@ -8,6 +8,12 @@
 
 editorconfig.editorconfig
 esbenp.prettier-vscode
+mechatroner.rainbow-csv
+ms-python.debugpy
+ms-python.python
+ms-python.vscode-pylance
+ms-python.vscode-python-envs
+openai.chatgpt
 streetsidesoftware.code-spell-checker
 yzhang.markdown-all-in-one
 github.copilot-chat

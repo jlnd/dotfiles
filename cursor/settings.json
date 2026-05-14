@@ -49,5 +49,6 @@
     "terminalCursor.background":     "#000000"
   },
 
-  "telemetry.telemetryLevel": "off"
+  "telemetry.telemetryLevel": "off",
+  "cursor.general.disableHttp2": true
 }

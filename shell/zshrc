@@ -53,6 +53,12 @@ source "$ZSH/oh-my-zsh.sh"
 # autoload -U promptinit && promptinit
 # prompt pure 2>/dev/null  # silently no-op if pure isn't installed yet
 
+# ---------- NVM (Node Version Manager) ------------------------------------------------
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -f ".nvmrc" ] && nvm use --silent # use the correct node version for a project
+
 # ---------- Source split-out files (kept in this repo) -----------------------
 for file in "$HOME/.exports" "$HOME/.aliases" "$HOME/.functions"; do
   [[ -r "$file" ]] && source "$file"

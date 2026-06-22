@@ -27,3 +27,13 @@ fi
 # Add ~/bin and ~/.local/bin to PATH if they exist
 [[ -d "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
 [[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
+
+# Add Homebrew's bin to PATH (if installed)
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  export PATH="$(brew --prefix)/bin:$PATH"
+elif [[ -x /usr/local/bin/brew ]]; then
+  export PATH="$(brew --prefix)/bin:$PATH"
+fi
+
+# Add Python 3.9's bin to PATH (if installed)
+[[ -d "$HOME/Library/Python/3.9/bin" ]] && export PATH="$HOME/Library/Python/3.9/bin:$PATH"

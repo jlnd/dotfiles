@@ -65,3 +65,8 @@ alias localip="ipconfig getifaddr en0"
 alias h="history"
 alias path='echo -e ${PATH//:/\\n}'
 alias serve="python3 -m http.server"  # quick local file server in cwd
+
+# ---------- Python -----------------------------------------------------------
+alias py="python3"
+alias python="python3"
+alias pip="python3 -m pip"

@@ -21,7 +21,10 @@ dotfiles/
 ├── git/                 # .gitconfig, .gitignore_global
 ├── iterm2/              # iTerm2 exported preferences (com.googlecode.iterm2.plist)
 ├── vscode/              # settings.json, keybindings.json, extensions.txt
-└── cursor/              # settings.json, keybindings.json, extensions.txt
+└── cursor/              # settings.json, keybindings.json, extensions.txt, mcp.json.example
+└── claude/              # Claude Code settings.json (+ settings.local.json.example for docs)
+
+
 ```
 
 ## Quick start (fresh Mac)
@@ -116,6 +119,10 @@ The `settings.json` and `keybindings.json` files are symlinked into
 `~/Library/Application Support/Code/User/` and
 `~/Library/Application Support/Cursor/User/` by `bootstrap.sh`.
 
+`cusor/mcp.json.example` shows the MCP server shape for reference. Keep
+your live `~/.cursor/mcp.json` (with real tokens) out of git - see \
+[Secrets](#secrets) below
+
 ### Integrated terminal colors
 
 The integrated terminals in VS Code and Cursor are themed to match the
@@ -128,6 +135,32 @@ If you ever change the iTerm2 colors, run
 `scripts/sync-terminal-colors.py` to regenerate the editor palettes from
 the updated `.itermcolors` file. See `iterm2/README.md` for the full
 re-export workflow.
+
+## Claude Code
+
+After running `install.sh` (or `./bootstrap.sh on an existing machine):
+
+- `claude/settings.json` is symlinked to `~/.claude/settings.json`
+  (permissions, theme, non-secret env flags like Bedrock enablement).
+- Machine-specific secrets (e.g. `AWS_BEARER_TOKEN_BEDROCK`) belongs in
+  `~/.zshrc.local`, which is sourced by `.zshrc` and is **not** in git.
+- `~/.claude.json` and everything under `~/.claude` except
+  `settings.json` (sessions, projects, plugins cache) stays **local only**
+  - do not add those to the repo.
+
+For per-project secret overrides, see `claude/settings.local.json.example`
+(project-level `.claude/settings.local.json`, gitignored per project).
+
+## Config map (avoid mixing these up)
+
+| Path | Purpose | Synced? |
+|------|---------|---------|
+| `~/.dotfiles/cursor/` | Cursor editor UI prefs | Yes (symlinked) |
+| `~/.cursor` | Cursor runtime (MCP, extensions, skills, state) | No |
+| `~/.dotfiles/claude/` | Claude Code user settings | Yes (symlinked) |
+| `~/.claude/` (except settings.json) | Claude runtime, sessions | No |
+| `~/.claude.json` | Claude app/onboarding state | No |
+| `~/.codex` | Codex CLI config | No (future optional) |
 
 ## Git hooks (pre-push secret scan)
 
@@ -159,4 +192,9 @@ Never commit any of these — they're in `.gitignore` already:
 
 - `~/.zshrc.local`, `~/.gitconfig.local`
 - `~/.ssh/`, `~/.gnupg/`
+- `~/.cursor/mcp.json` (use `cursor/mcp.json.example` as a template)
+- `claude/settings.local.json`, `cursor/mcp.local.json`, `*.local.json`
 - `.env`, `.env.*`, anything matching `*_token`, `*_secret`, `*.pem`, `*.key`
+
+Claude Code Bedrock auth: put `CLAUDE_CODE__USE_BEDROCK=1` and `AWS_BEARER_TOKEN_BEDROCK` in
+`~/.zshrc.local`.

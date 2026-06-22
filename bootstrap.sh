@@ -86,6 +86,10 @@ if [[ -d "$HOME/Library/Application Support/Cursor" ]]; then
   link_one "cursor/keybindings.json" "$CURSOR_USER_DIR/keybindings.json"
 fi
 
+# ---------- Claude Code ------------------------------------------------------
+mkdir -p "$HOME/.claude"
+link_one "claude/settings.json" "$HOME/.claude/settings.json"
+
 # ---------- Empty backup dir → remove it ------------------------------------
 if [[ -d "$BACKUP_DIR" ]] && [[ -z "$(find "$BACKUP_DIR" -mindepth 1 -print -quit)" ]]; then
   rmdir "$BACKUP_DIR"

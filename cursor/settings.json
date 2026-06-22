@@ -50,5 +50,8 @@
   },
 
   "telemetry.telemetryLevel": "off",
-  "cursor.general.disableHttp2": true
+  "cursor.general.disableHttp2": true,
+  "git.blame.editorDecoraition.enabled": false,
+  "git.blame.statusBarItem.enabled": false,
+  "window.autoDetectColorScheme": false
 }

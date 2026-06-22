@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/claude-settings.json",
+  "theme": "auto",
+  "permissions": {
+      "allow": [
+        "Bash(npm run list)",
+        "Bash(npm run test *)"
+      ],
+      "deny": [
+        "Bash(curl *)",
+        "Read(./.env)",
+        "Read(./secrets/**)"
+      ]
+  }
+}

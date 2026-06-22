@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "_comment": "Project-level template: copy to .claude/settings.local.json in a repo (gitignore it). For machine-wide secrets like AWS_BEARER_TOKEN_BEDROCK, use ~./.zschrc.local instead.",
+  "env": {
+    "CLAUDE_CODE__USE_BEDROCK": "1",
+    "AWS_BEARER_TOKEN_BEDROCK": "YOUR_BEDROCK_BEARER_TOKEN"
+  }
+}

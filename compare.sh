@@ -31,6 +31,7 @@ PAIRS=(
   "vscode/keybindings.json" "Library/Application Support/Code/User/keybindings.json"
   "cursor/settings.json"    "Library/Application Support/Cursor/User/settings.json"
   "cursor/keybindings.json" "Library/Application Support/Cursor/User/keybindings.json"
+  "claude/settings.json"    ".claude/settings.json"
 )
 
 # ANSI colors (only if stdout is a tty)

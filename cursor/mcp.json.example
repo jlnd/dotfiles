@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "Example Atlassian Jira": {
+      "command": "npx",
+      "args": ["-y", "@aashari/mcp-server-atlassian-jira"],
+      "env": {
+        "ATLASSIAN_SITE_NAME": "your-site",
+        "ATLASSIAN_USER_EMAIL": "you@example.com",
+        "ATLASSIAN_API_TOKEN": "YOUR_ATLASSIAN_API_TOKEN"
+      }
+    },
+    "Example Remote MCP": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://example.com/mcp",
+        "--header",
+        "Authorization: Bearer YOUR_API_TOKEN"
+      ],
+      "env": {}
+    }
+  }
+}

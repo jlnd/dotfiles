@@ -138,18 +138,23 @@ re-export workflow.
 
 ## Claude Code
 
-After running `install.sh` (or `./bootstrap.sh on an existing machine):
+After running `install.sh` (or `./bootstrap.sh` on an existing machine):
 
 - `claude/settings.json` is symlinked to `~/.claude/settings.json`
-  (permissions, theme, non-secret env flags like Bedrock enablement).
-- Machine-specific secrets (e.g. `AWS_BEARER_TOKEN_BEDROCK`) belongs in
-  `~/.zshrc.local`, which is sourced by `.zshrc` and is **not** in git.
-- `~/.claude.json` and everything under `~/.claude` except
-  `settings.json` (sessions, projects, plugins cache) stays **local only**
-  - do not add those to the repo.
+  (permissions, theme, non-secret Bedrock flags like `CLAUDE_CODE_USE_BEDROCK`
+  and `AWS_REGION`). Claude Code reads these at startup — including from the
+  desktop app, which does **not** load your shell profile.
+- `claude/settings.local.json` is symlinked to `~/.claude/settings.local.json`
+  for machine-specific secrets (e.g. `AWS_BEARER_TOKEN_BEDROCK`). The file
+  lives in the dotfiles repo on each machine but is **gitignored** — copy
+  `claude/settings.local.json.example` on a new machine and fill in your token.
+  On first bootstrap, an existing token in `~/.zshrc.local` is migrated
+  automatically.
+- `~/.claude.json` and everything else under `~/.claude/` (sessions, projects,
+  plugins cache) stays **local only** — do not add those to the repo.
 
-For per-project secret overrides, see `claude/settings.local.json.example`
-(project-level `.claude/settings.local.json`, gitignored per project).
+Verify Bedrock with `/status` inside Claude Code after a full app restart
+(Cmd+Q, then reopen).
 
 ## Config map (avoid mixing these up)
 
@@ -157,8 +162,9 @@ For per-project secret overrides, see `claude/settings.local.json.example`
 |------|---------|---------|
 | `~/.dotfiles/cursor/` | Cursor editor UI prefs | Yes (symlinked) |
 | `~/.cursor` | Cursor runtime (MCP, extensions, skills, state) | No |
-| `~/.dotfiles/claude/` | Claude Code user settings | Yes (symlinked) |
-| `~/.claude/` (except settings.json) | Claude runtime, sessions | No |
+| `~/.dotfiles/claude/settings.json` | Claude Code shared settings | Yes (symlinked) |
+| `~/.dotfiles/claude/settings.local.json` | Claude Code secrets (Bedrock token) | Per-machine (gitignored) |
+| `~/.claude/` (except the two settings files) | Claude runtime, sessions | No |
 | `~/.claude.json` | Claude app/onboarding state | No |
 | `~/.codex` | Codex CLI config | No (future optional) |
 
@@ -196,5 +202,6 @@ Never commit any of these — they're in `.gitignore` already:
 - `claude/settings.local.json`, `cursor/mcp.local.json`, `*.local.json`
 - `.env`, `.env.*`, anything matching `*_token`, `*_secret`, `*.pem`, `*.key`
 
-Claude Code Bedrock auth: put `CLAUDE_CODE__USE_BEDROCK=1` and `AWS_BEARER_TOKEN_BEDROCK` in
-`~/.zshrc.local`.
+Claude Code Bedrock auth: non-secret flags in `claude/settings.json`;
+`AWS_BEARER_TOKEN_BEDROCK` in `claude/settings.local.json` (gitignored).
+Do not put Bedrock vars in `~/.zshrc.local` — the desktop app won't see them.

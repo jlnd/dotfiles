@@ -88,7 +88,37 @@ fi
 
 # ---------- Claude Code ------------------------------------------------------
 mkdir -p "$HOME/.claude"
-link_one "claude/settings.json" "$HOME/.claude/settings.json"
+
+ensure_claude_settings_local() {
+  local src="$DOTFILES_DIR/claude/settings.local.json"
+  [[ -e "$src" ]] && return
+
+  if [[ -r "$HOME/.zshrc.local" ]]; then
+    local token
+    token="$(grep -E '^export AWS_BEARER_TOKEN_BEDROCK=' "$HOME/.zshrc.local" \
+      | head -1 \
+      | sed -E 's/^export AWS_BEARER_TOKEN_BEDROCK="([^"]*)".*/\1/')"
+    if [[ -n "$token" ]]; then
+      cat > "$src" <<EOF
+{
+  "\$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "AWS_BEARER_TOKEN_BEDROCK": "$token"
+  }
+}
+EOF
+      echo "  created: $src (migrated token from ~/.zshrc.local)"
+      return
+    fi
+  fi
+
+  cp "$DOTFILES_DIR/claude/settings.local.json.example" "$src"
+  echo "  created: $src from example — fill in AWS_BEARER_TOKEN_BEDROCK"
+}
+
+ensure_claude_settings_local
+link_one "claude/settings.json"       "$HOME/.claude/settings.json"
+link_one "claude/settings.local.json" "$HOME/.claude/settings.local.json"
 
 # ---------- Empty backup dir → remove it ------------------------------------
 if [[ -d "$BACKUP_DIR" ]] && [[ -z "$(find "$BACKUP_DIR" -mindepth 1 -print -quit)" ]]; then

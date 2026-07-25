@@ -52,6 +52,7 @@ TARGETS=(
   "Library/Application Support/Cursor/User/settings.json"
   "Library/Application Support/Cursor/User/keybindings.json"
   ".claude/settings.json"
+  ".claude/settings.local.json"
 )
 
 for rel in "${TARGETS[@]}"; do

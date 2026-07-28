@@ -40,7 +40,6 @@ brew "mas"                # Mac App Store CLI
 # brew "llvm"               # required by some Node.js packages
 brew "moreutils"          # collection of useful CLI tools (includes `sponge`)
 brew "pkg-config"         # helper for compiling software (required by some Node.js packages)
-brew "pure"               # minimalist zsh prompt (also loaded in shell/zshrc)
 
 # ============================================================
 # Web development tools
@@ -75,6 +74,7 @@ cask "rectangle"           # window management
 cask "raycast"             # spotlight replacement
 cask "1password"            # password manager (desktop app)
 cask "1password-cli"        # password manager CLI (also has a desktop app, but I prefer the CLI)
+cask "gcloud-cli"          # Google Cloud CLI
 # cask "notion"              # note-taking and productivity app
 
 # Fonts (handy if you ever want a Powerline / Nerd Font for Zsh themes)
